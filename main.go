@@ -1,7 +1,17 @@
 package main
 
-import "fmt"
+import (
+	"io"
+	"net/http"
+)
 
 func main() {
-	fmt.Println("Hello!")
+	router := http.NewServeMux()
+	router.HandleFunc("/", testing)
+
+	http.ListenAndServe(":8080", router)
+}
+
+func testing(w http.ResponseWriter, r *http.Request) {
+	io.WriteString(w, "Server under construction!")
 }
