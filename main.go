@@ -11,8 +11,8 @@ func main() {
 	port := os.Getenv("PORT")
 
 	if port == "" {
-		log.Println("$PORT is not set. Defaulting to 8080...")
-		port = "8080"
+		port = "5000"
+		log.Printf("$PORT is not set. Defaulting to %s...\n", port)
 	}
 
 	router := http.NewServeMux()
@@ -22,5 +22,6 @@ func main() {
 }
 
 func testing(w http.ResponseWriter, r *http.Request) {
+	log.Println("new hit")
 	io.WriteString(w, "Server under construction!")
 }
